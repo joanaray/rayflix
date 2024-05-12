@@ -1,0 +1,506 @@
+/****
+-- IMPORTS
+-- VARIABLES
+-- TYPOGRAPHY
+-- ELEMENTS
+-- UTILITIES
+-- MAIN SECTIONS
+-- COMPONENTS
+
+-- MEDIA QUERIES
+
+****/
+
+/** -- IMPORTS -- **/
+/* Mulish font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+/* Bootstrap icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/** -- VARIABLES -- **/
+:root {
+  --color-dark: hsla(0, 8%, 8%, 1); /* #161313 */
+  --color-black: hsla(0, 0%, 0%, 1); /* #000000 */
+  --color-light: hsla(0, 0%, 100%, 1); /* #ffffff */
+  --color-red: hsla(0, 78%, 65%, 1); /* #eb6161 */
+  --color-red--light: hsla(0, 48%, 65%, 1); /*  */
+  --color-red--lighter: hsla(0, 79%, 85%, 1); /* #f7bbbb */
+
+  --border-dark: 1px solid var(--color-dark);
+  --border-red: 1px solid var(--color-red);
+  --border-red-dotted: 1px dotted var(--color-red);
+
+  height: 100%;
+  background-color: var(--color-dark);
+  color: var(--color-red);
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* Use a value from 200 to 1000 */
+
+  --fw-extralight: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+  --fw-weight: 1000;
+
+  font-style: normal; /* italic available */
+  font-size: 100%;
+}
+*,
+*::before,
+*::after {
+  position: relative;
+  box-sizing: border-box;
+  transition-timing-function: ease-in-out;
+  transition-duration: 250ms;
+}
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+/** -- TYPOGRAPHY -- **/
+:where(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+}
+h1 {
+  font-size: 2.027em;
+  margin-block: calc(2.027rem * 0.2) 0.2027em;
+}
+h2 {
+  font-size: 1.802em;
+  margin-block: calc(1.802em * 0.2) 0.1802em;
+}
+h3 {
+  font-size: 1.602em;
+  margin-block: calc(1.602em * 0.35) 0.1602em;
+}
+h4 {
+  font-size: 1.424em;
+  margin-block: calc(1.424em * 0.35) 0.1424em;
+}
+h5 {
+  font-size: 1.266em;
+  margin-block: calc(1.266em * 0.5) 0.1266em;
+}
+h6 {
+  font-size: 1.125em;
+  margin-block: 1em;
+}
+p {
+  font-size: 1em;
+}
+p:first-child {
+  margin-top: 0;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+small,
+.small {
+  font-size: 0.889em;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.05rem;
+}
+.xsmall {
+  font-size: 0.79em;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.1rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+strong {
+  font-weight: var(--fw-bold);
+}
+
+/** -- ELEMENTS -- **/
+a {
+  color: var(--color-red);
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 0.2rem;
+  border-bottom: var(--border-red);
+  transition-property: all;
+}
+a:visited {
+  color: var(--color-red--light);
+  border-bottom-color: var(--color-red--light);
+}
+a:hover {
+  color: var(--color-red--lighter);
+  border-bottom-color: var(--color-dark);
+}
+
+a.tmdb-link {
+  color: #90cea1;
+  border-bottom-color: #90cea1;
+}
+a.tmdb-link:hover {
+  color: #01b4e4;
+  border-bottom-color: var(--color-dark);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: var(--color-dark);
+  border: var(--border-red);
+  color: var(--color-red);
+  cursor: pointer;
+  transition-property: all;
+}
+button:hover {
+  background-color: var(--color-red);
+  color: var(--color-black);
+}
+button:active {
+  background-color: var(--color-red--lighter);
+  border-color: var(--color-red--lighter);
+  color: var(--color-dark);
+}
+
+ul {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+summary {
+  cursor: pointer;
+}
+summary > * {
+  display: inline;
+}
+
+dialog[open] {
+  position: fixed;
+  width: 50%;
+  min-width: 300px;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  border: 0;
+}
+dialog::backdrop {
+  background-color: hsla(0, 0%, 0%, 0.85);
+  backdrop-filter: blur(2px);
+}
+
+/** -- UTILITIES -- **/
+
+/* Visually hide an element, but leave it available for screen readers.
+ * Extends the .screen-reader class to allow the element to be focusable when navigated to via the keyboard
+ * @link https://gomakethings.com/hidden-content-for-better-a11y/#hiding-the-link
+ */
+.screen-reader-text {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.screen-reader-focusable:active,
+.screen-reader-focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: normal;
+  width: auto;
+}
+
+.img-box {
+  display: flex;
+}
+
+/** -- MAIN SECTIONS -- **/
+header,
+main,
+footer {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  gap: 1rem 2rem;
+}
+
+/* - Header - */
+header {
+  position: fixed;
+  top: 0;
+  background: linear-gradient(
+    hsla(0, 0%, 0%, 0.75) 0%,
+    hsla(0, 0%, 0%, 0.5) 50%,
+    hsla(0, 0%, 0%, 0) 100%
+  );
+  z-index: 1;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.nav-block ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+}
+
+/* - Main - */
+main {
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+section > * + * {
+  margin-top: 2rem;
+}
+
+/* - Footer - */
+footer {
+  border-top: var(--border-red-dotted);
+}
+
+footer > div {
+  flex-basis: calc(75% - 2rem);
+}
+footer .logo-block {
+  flex-basis: 25%;
+  display: flex;
+  align-items: center;
+}
+.footer-blocks > div:not(:last-child) {
+  padding-bottom: 1rem;
+}
+.footer-blocks > div + div {
+  padding-top: 1rem;
+  border-top: var(--border-red-dotted);
+}
+footer .meta-list ul {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+.meta-list li {
+  padding-left: 0.5rem;
+}
+.meta-list li:first-child {
+  list-style: none;
+  padding-left: 0;
+}
+
+/** -- COMPONENTS -- **/
+header nav button {
+  background-color: var(--color-dark);
+  color: var(--color-red);
+  border: var(--border-red);
+}
+
+.featured-section {
+  padding-top: calc(var(--header-height) - 2rem);
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 1/1.5;
+  overflow: hidden;
+}
+.card:not(.featured) .img-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.img-box img {
+  width: 100%;
+  object-fit: cover;
+}
+.card:not(.featured) .text-box {
+  height: 100%;
+}
+.card summary::marker {
+  content: none;
+}
+.card:not(.featured) summary {
+  text-align: right;
+  margin-right: -0.5rem;
+}
+.card details {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+  color: var(--color-light);
+  background-color: hsla(0, 0%, 0%, 0.2);
+  transition-property: background-color;
+}
+.card:not(.featured) details {
+  padding-top: 0.5rem;
+}
+.card details[open] {
+  background: hsla(0, 0%, 0%, 0.75);
+}
+.card h3 {
+  font-size: 1em;
+}
+
+.featured {
+  aspect-ratio: initial;
+  margin-top: 0;
+}
+.featured details {
+  border-bottom: var(--border-red-dotted);
+}
+
+.featured summary {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* - MODAL  - */
+dialog iframe {
+  border: var(--border-red-dotted);
+}
+
+.card iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+/** -- MEDIA QUERIES -- **/
+@media (hover: hover) {
+  .featured:hover details {
+    background: hsla(0, 0%, 0%, 0.75);
+  }
+}
+@media screen and (min-width: 600px) {
+  .movies-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: 3.815em;
+    margin-block: calc(3.815em * 0.2) 0.3815em;
+  }
+  h2 {
+    font-size: 3.052em;
+    margin-block: calc(3.052em * 0.2) 0.3052em;
+  }
+  h3 {
+    font-size: 2.441em;
+    margin-block: calc(2.441em * 0.25) 0.2441em;
+  }
+  h4 {
+    font-size: 1.953em;
+    margin-block: calc(1.953em * 0.35) 0.1953em;
+  }
+  h5 {
+    font-size: 1.563em;
+    margin-block: calc(1.563em * 0.7) 0.1563em;
+  }
+  h6 {
+    font-size: 1.25em;
+    margin-block: 1.25em 0.8em;
+  }
+
+  .footer-blocks {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .footer-blocks > div + div {
+    padding-top: 4.8rem;
+    border: 0;
+  }
+  .footer-blocks > div {
+    flex-basis: 25%;
+  }
+  .footer-blocks > div:first-child {
+    flex-grow: 1;
+    flex-basis: 50%;
+    padding-top: 0;
+  }
+  footer .meta-list ul {
+    flex-direction: column;
+    row-gap: 1rem;
+    list-style: none;
+  }
+  footer .meta-list li {
+    padding: 0;
+  }
+
+  .featured-section {
+    display: flex;
+    flex-direction: column;
+  }
+  .featured {
+    height: 100%;
+    justify-content: center;
+  }
+  .featured .text-box {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .movies-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media screen and (min-width: 1400px) {
+  header,
+  footer,
+  main section:not(.featured-section),
+  .featured details {
+    padding-inline: 4rem;
+  }
+  main {
+    padding: 0;
+    row-gap: 4rem;
+  }
+  .featured-section {
+    padding-top: 0;
+  }
+  .featured .img-box{
+    max-height: 85vh;
+  }
+  .featured .img-box img {
+    object-position: top;
+  }
+  
+}

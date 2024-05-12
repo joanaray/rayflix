@@ -5,7 +5,7 @@ const Header = forwardRef(({ handleClick }, ref) => {
     <header ref={ref}>
       <div className="logo-block">
         <button type="button" onClick={() => handleClick("home")}>
-          Rayflix logo
+          <img src='assets/img/rayflix.png' alt="Rayflix" width="150"/>
         </button>
       </div>
       <div className="nav-block">
@@ -15,13 +15,13 @@ const Header = forwardRef(({ handleClick }, ref) => {
         <nav>
           <ul>
             <li>
-              <button type="button" onClick={() => handleClick("tv")}>
-                Shows
+              <button type="button" onClick={() => handleClick("movies")}>
+                Movies
               </button>
             </li>
             <li>
-              <button type="button" onClick={() => handleClick("movies")}>
-                Movies
+              <button type="button" onClick={() => handleClick("tv")}>
+                Shows
               </button>
             </li>
           </ul>

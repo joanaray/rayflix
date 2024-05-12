@@ -1,26 +1,22 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { fetchMovies } from "../data/tmdbAPI";
 import { useMediaQuery } from "react-responsive";
 
 import Modal from "./Modal";
 
 export default function MovieCard({ movie, isFeatured }) {
-
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait) and (max-width:799px)" });
+  const isPortrait = useMediaQuery({
+    query: "(orientation: portrait) and (max-width:799px)",
+  });
 
   /**
-   * Fetch video data from TMDB and render it only when the details box is opened. 
+   * Fetch video data from TMDB and render it only when the details box is opened.
    */
   const [movieTrailer, setMovieTrailer] = useState();
   const [trailerTitle, setTrailerTitle] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    if (isOpen && !movieTrailer) {
-      fetchMoviesData();
-    }
-  }, [isOpen]);
 
-  const fetchMoviesData = async () => {
+  const fetchMoviesData = useCallback(async () => {
     try {
       const movieTrailerData = await fetchMovies(
         `/movie/${movie.id}/videos?language=en-US`
@@ -33,10 +29,19 @@ export default function MovieCard({ movie, isFeatured }) {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, [movie.id]);
+
+  useEffect(() => {
+    if (isOpen && !movieTrailer) {
+      fetchMoviesData();
+    }
+  }, [isOpen, fetchMoviesData, movieTrailer]);
+
   const backdropURL = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
   const imgURL = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
-  const trailerSrc = movieTrailer ? `https://www.youtube.com/embed/${movieTrailer}` : null;
+  const trailerSrc = movieTrailer
+    ? `https://www.youtube.com/embed/${movieTrailer}`
+    : null;
 
   /**
    * Handle the info box open attribute and toggle its icon
@@ -93,19 +98,30 @@ export default function MovieCard({ movie, isFeatured }) {
           {isFeatured ? (
             <>
               <summary onClick={handleClick}>
-                <h3><span className="uppercase" style={{'fontWeight':'400'}}>Lastest:</span> {movie.title ? movie.title : movie.name}</h3>
+                <h3>
+                  <span className="uppercase" style={{ fontWeight: "400" }}>
+                    Lastest:
+                  </span>{" "}
+                  {movie.title ? movie.title : movie.name}
+                </h3>
                 {icon}
               </summary>
+              <p>{movie.overview}</p>
+              {movie.title && trailerSrc && (
+                <Modal trailerSrc={trailerSrc} trailerTitle={trailerTitle} />
+              )}
             </>
           ) : (
             <>
               <summary onClick={handleClick}>{icon}</summary>
-              <h3>{movie.title ? movie.title : movie.name}</h3>
+              <div>
+                <h3>{movie.title ? movie.title : movie.name}</h3>
+                <p>{movie.overview}</p>
+                {movie.title && trailerSrc && (
+                  <Modal trailerSrc={trailerSrc} trailerTitle={trailerTitle} />
+                )}
+              </div>
             </>
-          )}
-          <p>{movie.overview}</p>
-          {movie.title && trailerSrc && (
-            <Modal trailerSrc={trailerSrc} trailerTitle={trailerTitle} />
           )}
         </details>
       </div>

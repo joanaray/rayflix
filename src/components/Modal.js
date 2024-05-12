@@ -4,7 +4,7 @@ export default function Modal({ trailerSrc, trailerTitle }) {
     const dialogRef=useRef(null);
   // "Close" button closes the dialog
   function handleClick(action) {
-    action == 'open' && dialogRef.current ? dialogRef.current.showModal() : dialogRef.current.close();
+    action === 'open' && dialogRef.current ? dialogRef.current.showModal() : dialogRef.current.close();
   }
 
   return (

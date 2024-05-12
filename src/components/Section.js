@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Movies from "./Movies";
 
 export default function Section({
@@ -13,11 +12,12 @@ export default function Section({
   if (isCrap) {
     query.map((movie) => {
       if (movie.rating === 1) {
-        crapMovies.push(movie);
+        return crapMovies.push(movie);
       }
+      return null;
     });
   }
-  if ((query.length > 0 && !isCrap) || (isCrap && crapMovies.length > 0) ) {
+  if ((query.length > 0 && !isCrap) || (isCrap && crapMovies.length > 0)) {
     return (
       <section>
         <hgroup>

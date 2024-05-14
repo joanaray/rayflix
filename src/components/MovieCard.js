@@ -136,7 +136,7 @@ export default function MovieCard({ movie, isFeatured }) {
                     {(movie.release_date || movie.first_air_date) && (
                         <li>{movie.release_date ? movie.release_date : movie.first_air_date}</li>
                       )}
-                    {genresList && <li>{genresList.join(", ")}</li>}
+                    {genresList.length > 0 && <li>{genresList.join(", ")}</li>}
                   </ul>
                 )}
 

@@ -30,14 +30,13 @@ function App() {
         setHeaderHeight(header.current.offsetHeight);
       }
     }, 1);
-  }, [header.current]);
+  }, []);
   const headerHeightVar = { "--header-height": headerHeight + "px" };
 
   /**
    * Fetch content from TMDB
    */
   const [moviesWatchPage1, setMoviesWatchPage1] = useState([]);
-  const [moviesWatchPage2, setMoviesWatchPage2] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [tvFavorites, setTvFavorites] = useState([]);
   const [pieceOfShit, setPieceOfShit] = useState([]);
@@ -67,11 +66,6 @@ function App() {
           );
           setMoviesWatchPage1(moviesWatchPage1Data);
           setLatest(moviesWatchPage1Data[0]);
-
-          const moviesWatchPage2Data = await fetchMovies(
-            "/account/21254396/watchlist/movies?language=en-US&page=2&sort_by=created_at.desc"
-          );
-          setMoviesWatchPage2(moviesWatchPage2Data);
 
           const movieFavoritesData = await fetchMovies(
             "/account/21254396/favorite/movies?language=en-US&page=1&sort_by=created_at.desc"

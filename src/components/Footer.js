@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer>
-      <div className="logo-block"><img src="assets/img/ico-rayflix.png" alt="R" width="50"/></div>
+      <div className="logo-block"><img src={process.env.PUBLIC_URL + "/assets/img/ico-rayflix.png"} alt="R" width="50"/></div>
       <div className="footer-blocks">
         <div>
           <h2>About</h2>
@@ -10,6 +10,7 @@ export default function Footer() {
             She liked most of them.<br/>
             She fell asleep to too many of them for sure.
           </p>
+          <p><a href="https://www.themoviedb.org/u/joanaray">Find Joana on TMDB</a></p>
         </div>
         <div className="meta-list small uppercase">
           <ul>

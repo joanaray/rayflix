@@ -5,7 +5,7 @@ const Header = forwardRef(({ handleClick }, ref) => {
     <header ref={ref}>
       <div className="logo-block">
         <button type="button" onClick={() => handleClick("home")}>
-          <img src='assets/img/rayflix.png' alt="Rayflix" width="150"/>
+          <img src={process.env.PUBLIC_URL + '/assets/img/rayflix.png'} alt="Rayflix" width="150"/>
         </button>
       </div>
       <div className="nav-block">

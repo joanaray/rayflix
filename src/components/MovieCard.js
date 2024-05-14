@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { fetchMovies } from "../data/tmdbAPI";
+import { fetchGenres, fetchMovies } from "../data/tmdbAPI";
 import { useMediaQuery } from "react-responsive";
 
 import Modal from "./Modal";
@@ -15,6 +15,7 @@ export default function MovieCard({ movie, isFeatured }) {
   const [movieTrailer, setMovieTrailer] = useState();
   const [trailerTitle, setTrailerTitle] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [genreNames, setGenreNames] = useState([]);
 
   const fetchMoviesData = useCallback(async () => {
     try {
@@ -26,10 +27,19 @@ export default function MovieCard({ movie, isFeatured }) {
       const trailerKey = randomTrailer.key;
       setMovieTrailer(trailerKey);
       setTrailerTitle(randomTrailer.name);
+      const genresData = await fetchGenres();
+      setGenreNames(genresData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   }, [movie.id]);
+
+  const genresList = [];
+  const movieGenresIDs = movie.genre_ids;
+  genreNames.map(
+    (genre) => movieGenresIDs.includes(genre.id) && genresList.push(genre.name)
+  );
+  genresList.join(", ");
 
   useEffect(() => {
     if (isOpen && !movieTrailer) {
@@ -106,6 +116,10 @@ export default function MovieCard({ movie, isFeatured }) {
                 </h3>
                 {icon}
               </summary>
+              <ul className="movie-meta">
+                <li>{movie.release_date ? movie.release_date : movie.first_air_date}</li>
+                <li>{genresList.join(", ")}</li>
+              </ul>
               <p>{movie.overview}</p>
               {movie.title && trailerSrc && (
                 <Modal trailerSrc={trailerSrc} trailerTitle={trailerTitle} />
@@ -117,6 +131,15 @@ export default function MovieCard({ movie, isFeatured }) {
               <div>
                 <h3>{movie.title ? movie.title : movie.name}</h3>
                 <p>{movie.overview}</p>
+                {(movie.release_date || genresList.length > 0 || movie.first_air_date) && (
+                  <ul className="movie-meta">
+                    {(movie.release_date || movie.first_air_date) && (
+                        <li>{movie.release_date ? movie.release_date : movie.first_air_date}</li>
+                      )}
+                    {genresList && <li>{genresList.join(", ")}</li>}
+                  </ul>
+                )}
+
                 {movie.title && trailerSrc && (
                   <Modal trailerSrc={trailerSrc} trailerTitle={trailerTitle} />
                 )}

@@ -348,6 +348,7 @@ header nav button {
   background-color: var(--color-dark);
   color: var(--color-red);
   border: var(--border-red);
+  letter-spacing: 0.1rem;
   text-transform: uppercase;
 }
 
@@ -432,6 +433,22 @@ header nav button {
 .featured summary {
   display: flex;
   justify-content: space-between;
+}
+
+.movie-meta {
+  margin-block: 1rem;
+  padding: 1rem 0 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.79em;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  color: var(--color-red);
+  border-top: var(--border-red-dotted);
+}
+.movie-meta:last-child {
+  margin-bottom: 0;
 }
 
 /* - MODAL  - */
@@ -534,6 +551,14 @@ dialog iframe {
     position: absolute;
     bottom: 0;
     width: 100%;
+  }
+  .featured .movie-meta {
+    flex-direction: row;
+    gap: 1.25rem;
+    padding-left: 0;
+  }
+  .featured .movie-meta li:first-child {
+    list-style: none;
   }
   .home .movies-grid .card {
     width: calc(100vw / 5);

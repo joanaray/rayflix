@@ -89,7 +89,7 @@ function App() {
   const mainClass = `App ${onDisplay === "home" ? "home" : ""}`;
   return (
     <>
-      <Header handleClick={setDisplay} ref={header} />
+      <Header handleClick={setDisplay} ref={header} onDisplay={onDisplay} />
       <main className={mainClass} id="main" style={headerHeightVar}>
         <Featured isFeatured={true} query={latest} />
         {onDisplay !== "home" && (
@@ -99,7 +99,7 @@ function App() {
               isCrap={true}
               query={pieceOfShit}
               sectionTitle={"Not worth it"}
-              sectionDescription={"Honestly, these are all pieces of shit."}
+              sectionDescription={"A whole new level of trash."}
             />
             <Section
               query={moviesWatchPage1}

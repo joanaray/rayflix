@@ -241,6 +241,12 @@ dialog::backdrop {
   display: flex;
 }
 
+.active {
+  color:var(--color-dark);
+  background-color: var(--color-red);
+  cursor: inherit;
+}
+
 /** -- MAIN SECTIONS -- **/
 header,
 main,

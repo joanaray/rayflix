@@ -1,6 +1,11 @@
 import React, { forwardRef } from "react";
 
-const Header = forwardRef(({ handleClick }, ref) => {
+const Header = forwardRef(({ handleClick, onDisplay }, ref) => {
+  const movies = "movies";
+  const tv = "tv";
+
+  const isActive = (cat) => onDisplay === cat ? "active" : null;
+
   return (
     <header ref={ref}>
       <div className="logo-block">
@@ -15,12 +20,12 @@ const Header = forwardRef(({ handleClick }, ref) => {
         <nav>
           <ul>
             <li>
-              <button type="button" onClick={() => handleClick("movies")}>
+              <button className={isActive(movies)} type="button" onClick={() => handleClick(movies)}>
                 Movies
               </button>
             </li>
             <li>
-              <button type="button" onClick={() => handleClick("tv")}>
+              <button  className={isActive(tv)} type="button" onClick={() => handleClick(tv)}>
                 Shows
               </button>
             </li>

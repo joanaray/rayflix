@@ -8,7 +8,7 @@ export const fetchMovies = async (url) => {
       headers: {
         accept: "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDBlZmZlNTQ1NzdkNTA2MTkyM2RmOTJhNDFiNWU2YyIsInN1YiI6IjY2MzhhM2VlMmZhZjRkMDEzMGM2NGY1MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.votEoEOc81zFGnwygQwm6-oWbagkmCK-8EvESmBS6pg",
+          "Bearer [insert your TMDB API key]",
       },
     };
     const response = await fetch(completeURL, options);
@@ -28,7 +28,7 @@ export const fetchGenres = async () => {
       headers: {
         accept: "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MDBlZmZlNTQ1NzdkNTA2MTkyM2RmOTJhNDFiNWU2YyIsInN1YiI6IjY2MzhhM2VlMmZhZjRkMDEzMGM2NGY1MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.votEoEOc81zFGnwygQwm6-oWbagkmCK-8EvESmBS6pg",
+          "Bearer [insert your TMDB API key]",
       },
     };
     const response = await fetch(url, options);
